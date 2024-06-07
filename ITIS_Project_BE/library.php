@@ -17,7 +17,11 @@ use Aws\Exception\AwsException;
 // Create a S3Client
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'us-east-1' // Change to your bucket's region
+    'region'  => 'us-east-1',
+    'credentials' => [
+        'key'    => getenv('AWS_ACCESS_KEY_ID'), // Use environment variables
+        'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
+    ]
 ]);
 
 $bucketName = 'itis-group11_librymanagment';
@@ -69,7 +73,6 @@ try {
     foreach ($objects['Contents'] as $object) {
         $fileList[] = [
             "name" => $object['Key'],
-            // Optionally, you can create a pre-signed URL for secure, temporary access to files
             "url" => $s3->getObjectUrl($bucketName, $object['Key'])
         ];
     }
