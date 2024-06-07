@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = document.getElementById('email').value;
-
-        fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/forgot.php', {
+       
+        fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/forgot.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'login.html'; // Redirect to login page if no token
                 return;
             }
-            fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/library.php', {
+            fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/library.php', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const downloadFile = (fileName) => {
             const token = localStorage.getItem('token'); // Retrieve the token
-            fetch(`http://localhost/ITIS%20Project/ITIS_Project_BE/library.php?file=${fileName}`, {
+            fetch(`hhttps://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/library.php?file=${fileName}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData();
         formData.append('file', file); // Append the file to the FormData object
 
-        fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/uploadbooks.php', {
+        fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/uploadbooks.php', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`

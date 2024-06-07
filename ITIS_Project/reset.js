@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const encryptedPassword = btoa(unescape(encodeURIComponent(newPassword)));
         console.error('newPassword:', newPassword);
         console.error('encryptedPassword:', encryptedPassword);
-        fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/reset.php', {
+        fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/reset.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

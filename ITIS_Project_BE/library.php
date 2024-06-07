@@ -89,7 +89,7 @@ if (isset($_GET['file'])) {
 }
 
 // Base URL of your project
-$baseUrl = 'http://localhost/ITIS%20Project/ITIS_Project_BE/Files/';
+$baseUrl = 'https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/Files/';
 
 // Directory path
 $directoryPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Files';

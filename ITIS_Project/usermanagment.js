@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let token = localStorage.getItem('token'); 
 
     function refreshAccessToken() {
-        return fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/refresh_token_endpoint', {
+        return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refresh_token_endpoint', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') })
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'login.html'; // Redirect to login page if no token
             return;
         }
-        fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/usermanagment.php', {
+        fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php', {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` }
         })
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const newRole = prompt("Enter new role:");
         if (!newRole) return;
 
-        performUserModification(`http://localhost/ITIS%20Project/ITIS_Project_BE/usermanagment.php?id=${id}`, {
+        performUserModification(`hhttps://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,21 +110,21 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.deleteUser = function(id) {
-        performUserModification(`http://localhost/ITIS%20Project/ITIS_Project_BE/usermanagment.php?id=${id}`, {
+        performUserModification(`hhttps://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         }, () => deleteUser(id));
     };
 
     window.toggleStatus = function(id, status) {
-        performUserModification(`http://localhost/ITIS%20Project/ITIS_Project_BE/usermanagment.php?id=${id}&toggle=status&status=${status}`, {
+        performUserModification(`https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}&toggle=status&status=${status}`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
         }, () => toggleStatus(id, status));
     };
 
     window.toggleRole = function(id, role) {
-        performUserModification(`http://localhost/ITIS%20Project/ITIS_Project_BE/usermanagment.php?id=${id}&toggle=role&role=${role}`, {
+        performUserModification(`https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}&toggle=role&role=${role}`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
         }, () => toggleRole(id, role));

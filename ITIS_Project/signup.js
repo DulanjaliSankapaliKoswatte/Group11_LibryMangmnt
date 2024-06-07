@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             console.log('Encrypted JSON data:', jsonData); // Debug log
 
-            fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/signup.php', {
+            fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/signup.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

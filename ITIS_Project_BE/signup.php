@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Send verification email using sendEmail function
             $subject = 'Verify Your Email Address';
-            $body = 'Please click the link below to verify your email address:<br><br>' . '<a href="http://localhost/ITIS%20Project/ITIS_Project_BE/verify_email.php?token=' . $token . '">Verify Email</a>';
+            $body = 'Please click the link below to verify your email address:<br><br>' . '<a href="https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/verify_email.php?token=' . $token . '">Verify Email</a>';
             if (sendEmail($email, $subject, $body)) {
                 echo json_encode(array("success" => true, "message" => "Registration successful! Please check your email to verify your account."));
             } else {

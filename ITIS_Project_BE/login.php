@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $recaptchaContext = stream_context_create($options);
     $recaptchaResult = file_get_contents($recaptchaUrl, false, $recaptchaContext);
     $recaptchaJson = json_decode($recaptchaResult, true);
-    $conn = new mysqli('localhost', 'root', '', 'library_managment');
+    $conn = new mysqli('172.31.36.218', 'root', '', 'library_managment');
     if (!$recaptchaJson['success']) {
         echo json_encode(array("success" => false, "message" => "reCAPTCHA verification failed." . $conn->connect_error));
         exit();

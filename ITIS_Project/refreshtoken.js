@@ -2,7 +2,7 @@ function refreshAccessToken() {
     // Get the expired access token from localStorage
     const expiredToken = localStorage.getItem('token'); // Ensure you are storing the expired token under 'token'
 
-    return fetch('http://localhost/ITIS%20Project/ITIS_Project_BE/refreshtoken.php', {
+    return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refreshtoken.php', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${expiredToken}`, // Send the expired token in the Authorization header

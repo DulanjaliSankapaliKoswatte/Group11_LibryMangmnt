@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: https://localhost");  // You can also use '*' to allow all origins
+header("Access-Control-Allow-Origin: *");  // You can also use '*' to allow all origins
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST, OPTIONS");  // Ensure to allow POST for your request
 
