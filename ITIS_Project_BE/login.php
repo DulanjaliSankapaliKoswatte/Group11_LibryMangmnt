@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-// require __DIR__ . '/../vendor/autoload.php'; // Use __DIR__ to ensure the correct path
+require __DIR__ . '/../vendor/autoload.php'; // Use __DIR__ to ensure the correct path
 use \Firebase\JWT\JWT;
 
 $key = "Group11"; // Change this to your secret key

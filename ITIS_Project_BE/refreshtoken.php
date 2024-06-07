@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
-// require __DIR__ . '/../vendor/autoload.php'; // Ensure your autoload path is correct
+require __DIR__ . '/../vendor/autoload.php'; // Ensure your autoload path is correct
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
