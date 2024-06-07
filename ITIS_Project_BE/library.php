@@ -8,131 +8,74 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require 'vendor/autoload.php'; // Ensure the AWS SDK is loaded
 require 'validate_token.php';
 
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
+
+// Create a S3Client
+$s3 = new S3Client([
+    'version' => 'latest',
+    'region'  => 'us-east-1' // Change to your bucket's region
+]);
+
+$bucketName = 'itis-group11_librymanagment';
+
 try {
-    // Fetch Authorization header
-    $authHeader = null;
-
-    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-        $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
-    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-        $authHeader = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
-    }
-
-    // Validate the token
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null;
     $decodedToken = validateToken($authHeader);
-
-    // Access the payload
-    $username = $decodedToken['payload']['username']; // Assuming the token has a 'username' claim
+    $username = $decodedToken['payload']['username'];
     $issuedAt = $decodedToken['payload']['iat'];
     $expirationTime = $decodedToken['payload']['exp'];
 
-    error_log('Username: ' . $username);
-    error_log('Issued At: ' . date('Y-m-d H:i:s', $issuedAt));
-    error_log('Expiration Time: ' . date('Y-m-d H:i:s', $expirationTime));
-
     if ($expirationTime < time()) {
-        // Log an appropriate message or handle it as needed
-        error_log("Token has expired");
-        http_response_code(401);  // Set HTTP status code to 401 Unauthorized
-        echo json_encode([
-            "success" => false,
-            "message" => "Token has expired",
-            "data" => null
-        ]);
-        exit;
+        throw new Exception("Token has expired");
     }
-
 } catch (Exception $e) {
     error_log($e->getMessage());
-    echo json_encode([
-        "success" => false,
-        "message" => $e->getMessage(),
-        "data" => null
-    ]);
+    echo json_encode(["success" => false, "message" => $e->getMessage(), "data" => null]);
     exit;
 }
 
-// Check if a specific file is requested
 if (isset($_GET['file'])) {
     $fileName = $_GET['file'];
-    $filePath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . $fileName;
-
-    if (!file_exists($filePath)) {
-        error_log("File not found: " . $filePath);
-        echo json_encode([
-            "success" => false,
-            "message" => "File not found.",
-            "data" => null
+    try {
+        // Get the object from S3
+        $result = $s3->getObject([
+            'Bucket' => $bucketName,
+            'Key'    => $fileName
         ]);
-        exit;
-    }
-
-    $fileContent = file_get_contents($filePath);
-    if ($fileContent === false) {
-        error_log("Failed to read file: " . $filePath);
+        // Direct download link or file content
+        $fileContent = $result['Body']->getContents();
         echo json_encode([
-            "success" => false,
-            "message" => "Failed to read file.",
-            "data" => null
+            "success" => true,
+            "message" => "File content retrieved successfully.",
+            "data" => base64_encode($fileContent)
         ]);
-        exit;
+    } catch (AwsException $e) {
+        error_log($e->getMessage());
+        echo json_encode(["success" => false, "message" => "File not found.", "data" => null]);
     }
-
-    echo json_encode([
-        "success" => true,
-        "message" => "File content retrieved successfully.",
-        "data" => base64_encode($fileContent)
-    ]);
     exit;
 }
 
-// Base URL of your project
-$baseUrl = 'https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/Files/';
-
-// Directory path
-$directoryPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Files';
-
-// Check if directory exists
-if (!is_dir($directoryPath)) {
-    error_log("Directory not found: " . $directoryPath);
-    echo json_encode([
-        "success" => false,
-        "message" => "Directory not found.",
-        "data" => null
+try {
+    // List objects in a bucket
+    $objects = $s3->listObjects([
+        'Bucket' => $bucketName
     ]);
-    exit;
-}
-
-// Get list of files from the directory
-$files = scandir($directoryPath);
-if ($files === false) {
-    error_log("Failed to read directory: " . $directoryPath);
-    echo json_encode([
-        "success" => false,
-        "message" => "Failed to read directory.",
-        "data" => null
-    ]);
-    exit;
-}
-
-$fileList = array();
-
-foreach ($files as $file) {
-    // Skip the current and parent directory entries
-    if ($file !== '.' && $file !== '..') {
-        $fileList[] = array(
-            "name" => $file,
-            "url" => $baseUrl . $file
-        );
+    $fileList = [];
+    foreach ($objects['Contents'] as $object) {
+        $fileList[] = [
+            "name" => $object['Key'],
+            // Optionally, you can create a pre-signed URL for secure, temporary access to files
+            "url" => $s3->getObjectUrl($bucketName, $object['Key'])
+        ];
     }
+    echo json_encode(["success" => true, "message" => "Files listed successfully.", "data" => $fileList]);
+} catch (AwsException $e) {
+    error_log($e->getMessage());
+    echo json_encode(["success" => false, "message" => "Failed to list files.", "data" => null]);
 }
-
-// Return the file list as JSON
-echo json_encode([
-    "success" => true,
-    "message" => "Files listed successfully.",
-    "data" => $fileList
-]);
 ?>
