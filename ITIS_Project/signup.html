@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="signup.js" defer></script>
+    <link rel="stylesheet" href="signup.css">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="login-container">
+        <img src="signup.jpg" width="200" class="logo">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <div id="password-strength"></div>
+            <button type="submit">Sign up</button>
+        </form>
+        <p>Already have an Account? <a href="login.html">Log In</a></p>
+    </div>
+</body>
+</html>

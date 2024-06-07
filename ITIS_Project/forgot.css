@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: lightgrey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+.logo{
+    width: 350px;
+   
+    padding-right: 2px; 
+     
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    justify-content: center;
+    margin: 50px;
+
+
+}
+
+.form-container{
+max-width: 350px;
+background-color: white;
+padding-left: 20px;
+
+}
+
+h1{
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+
+p{
+    margin-bottom: 20px;
+    font-size: small;
+    text-align: center;
+}
+
+input[type= "email"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"]{
+    width: 100%;
+    padding: 10px;  
+    background-color:lightseagreen ;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+a{
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: small;
+    text-align: center;
+    display: block;
+    color: #333;
+
+}
+a:hover{
+    text-decoration: underline;
+}

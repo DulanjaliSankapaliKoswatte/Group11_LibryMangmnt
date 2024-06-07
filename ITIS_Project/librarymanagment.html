@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management</title>
+    <link rel="stylesheet" href="librarymanagment.css"> <!-- Ensure the CSS file is correctly named -->
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="left-side">
+                <h1>Welcome to the Library Management System</h1>
+                <img src="library.jpg" width="500" class="logo">
+                <p>Find the book you are looking for online</p>
+                <form id="search-form">
+                    <input type="text" placeholder="Enter name of book" id="book-search">
+                    <button type="submit">Search</button>
+                </form>
+                <br>
+                <table class="table-content">
+                    <thead class="table_header">
+                        <tr>
+                            <th>ID</th>
+                            <th>Book Name</th>
+                            <th>Download</th>
+                            <!-- <th>Delete</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="book-list">
+                        <!-- Book list will be dynamically loaded here -->
+                    </tbody>
+                </table>
+                <br>
+               
+                <a href="uploadbooks.html" class="button">Add a Book</a>
+                <a href="login.html" class="button">Log out</a>
+                <a href="adminlibrary.html" class="button"> Go back to Admin Page</a>
+                
+            </div>
+        </div>
+    </div>
+    <script src="refreshtoken.js"></script>
+    <script src="librarymanagment.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload Book</title>
+    <link rel="stylesheet" href="uploadbooks.css">
+</head>
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <h1>Upload Book</h1>
+            <p class="description">Please enter the book details to upload the book</p>
+            <form class="form-container">
+                <label>Book Title</label>
+                <!-- <input type="text" id="title" placeholder="Enter book title" required>
+                
+                <label>ISBN</label>
+                <input type="text" id="isbn" placeholder="Enter ISBN" required>
+                
+                <label>Author Name</label>
+                <input type="text" id="author" placeholder="Enter author name" required>
+                
+                <label>Year made</label>
+                <input type="text" id="year" placeholder="Enter year made" required>
+                
+                <label>Category</label>
+                <input type="text" id="category" placeholder="Enter book category" required> -->
+                
+                <label>Upload book file</label>
+                <input type="file" id="file" accept="application/pdf, application/vnd.ms-excel" />
+
+                <div class="button-container">
+                    <button type="submit" class="button">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="refreshtoken.js"></script>
+    <script src="uploadbooks.js"></script>
+</body>
+</html>

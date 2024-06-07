@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="login-container">
+        <img src="login.jpg" width="200" class="logo">
+        <h2>Log in</h2>
+        <form id="login-form">
+            <input type="text" id="username" name="username" placeholder="Enter Username">
+            <input type="password" id="password" name="password" placeholder="Enter Password">
+            <div class="g-recaptcha" data-sitekey="6LcljfEpAAAAANfr9iVEx-WYo9FpBhCAYIpRm-0V"></div>
+            <button type="submit">Log in</button>
+        </form>
+        <p>Don't have an Account? <a href="signup.html">Sign Up</a></p>
+        <p>Forgot Password? <a href="forgot.html">Reset Password</a></p>
+    </div>
+    <script src="login.js" defer></script>
+</body>
+</html>
