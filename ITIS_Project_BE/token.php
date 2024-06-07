@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php'; // Use __DIR__ to ensure the correct path
+require __DIR__ . '/../../vendor/autoload.php'; // Use __DIR__ to ensure the correct path
 use \Firebase\JWT\JWT;
 
 function validateToken($authHeader) {
