@@ -10,7 +10,8 @@ $key = "Group11"; // Change this to your secret key
 $ttl = 3600; // Time-To-Live for the token (1 hour)
 $refreshttl = 129600;
 $algorithm = "HS256"; // Specify the algorithm
-$recaptchaSecret= "6LcljfEpAAAAAFo1fJnU2CGqCLmQwwdzxPDzkxUY";
+//6LcljfEpAAAAAFo1fJnU2CGqCLmQwwdzxPDzkxUY
+$recaptchaSecret= "6LdJjPMpAAAAAEsgeZ8w0PyB2hLf7OmyTXJ_yy6k";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the raw POST data
