@@ -14,14 +14,12 @@ require 'validate_token.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-// Create a S3Client
+
+
+// Create an S3 client
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'us-east-1',
-    'credentials' => [
-        'key'    => getenv('AWS_ACCESS_KEY_ID'), // Use environment variables
-        'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
-    ]
+    'region'  => 'us-east-1'
 ]);
 
 $bucketName = 'itis-group11_librymanagment';
