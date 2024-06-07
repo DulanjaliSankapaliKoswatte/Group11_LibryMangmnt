@@ -19,7 +19,7 @@ use Aws\Exception\AwsException;
 // Create an S3 client
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'us-east-1'
+    'region'  => 'global'
 ]);
 
 $bucketName = 'itis-group11_librymanagment';
