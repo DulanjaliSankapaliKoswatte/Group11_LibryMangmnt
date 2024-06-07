@@ -28,7 +28,7 @@ function getNewAccessTokenUsingExpiredToken($expiredToken, $key, $ttl, $algorith
         $payload = JWT::jsonDecode(JWT::urlsafeB64Decode($bodyb64));
         $username = $payload->username; // Extract 'username'
 
-        $conn = new mysqli('172.31.36.218', 'root', '', 'library_managment');
+        $conn = new mysqli('127.0.0.1', 'appuser', 'Abcd@1234', 'library_managment');
         if ($conn->connect_error) {
             error_log("Database connection failed: " . $conn->connect_error);
             return json_encode(["success" => false, "message" => "Database connection failed: " . $conn->connect_error]);

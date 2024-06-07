@@ -6,7 +6,7 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
     // Database connection
-    $conn = new mysqli('172.31.36.218', 'root', '', 'library_managment');
+    $conn = new mysqli('127.0.0.1', 'appuser', 'Abcd@1234', 'library_managment');
     if ($conn->connect_error) {
         echo json_encode(array("success" => false, "message" => "Connection failed: " . $conn->connect_error));
         exit();
