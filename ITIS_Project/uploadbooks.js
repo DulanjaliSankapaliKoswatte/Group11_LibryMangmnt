@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(form);
         formData.append('file', document.getElementById('file').files[0]); // Ensure file is appended for S3 upload
         const fileInput = document.getElementById('file');
-        const filename = fileInput.files[0];
+        const file = fileInput.files[0];
+        const filename = file.name;
         // First, upload book details to the database
         const bookDetailsData = new FormData();
         bookDetailsData.append('title', document.getElementById('title').value);
