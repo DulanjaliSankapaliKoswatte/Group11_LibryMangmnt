@@ -18,7 +18,7 @@ body{
 
 
 
-.login-container{
+.signup-container{
     background-color: white;
     display: flex;
     padding: 30px;
@@ -33,11 +33,11 @@ body{
 
 
 }
-.login-container .left, .login-container .right {
+.signup-container .left, .signup-container .right {
     flex: 1; 
 }
 
-.login-container .left {
+.signup-container .left {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,13 +49,13 @@ body{
     flex-direction: row-reverse;
 }
 
-.login-container .right img {
+.signup-container .right img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.login-container .right {
+.signup-container .right {
     display: flex;
     flex-direction: column;
     justify-content: center;
