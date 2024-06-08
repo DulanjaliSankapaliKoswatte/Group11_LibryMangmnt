@@ -69,7 +69,7 @@ try {
         // }
 
         $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category, file_location) VALUES (?, ?, ?, ?, ?, ?)");
-        if (!$stmt->execute([$title, $isbn, $author, $year, $category, $uploadPath])) {
+        if (!$stmt->execute([$title, $isbn, $author, $year, $category,  $file])) {
             error_log("Error executing SQL: " . implode(";", $stmt->errorInfo()));
             throw new Exception("Error executing SQL: " . $stmt->errorInfo()[2]);
         }
