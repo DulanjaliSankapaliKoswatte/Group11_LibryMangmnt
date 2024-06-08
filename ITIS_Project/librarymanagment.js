@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const downloadFile = (fileName) => {
             const token = localStorage.getItem('token'); // Retrieve the token
-            fetch(`hhttps://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/library.php?file=${fileName}`, {
+            fetch(`https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/library.php?file=${fileName}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`

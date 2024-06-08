@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const newRole = prompt("Enter new role:");
         if (!newRole) return;
 
-        performUserModification(`hhttps://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}`, {
+        performUserModification(`https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     window.deleteUser = function(id) {
-        performUserModification(`hhttps://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}`, {
+        performUserModification(`https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/usermanagment.php?id=${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         }, () => deleteUser(id));
