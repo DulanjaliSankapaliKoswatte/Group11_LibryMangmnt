@@ -48,16 +48,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (newPassword !== confirmPassword) {
             confirmPasswordInput.setCustomValidity("Passwords do not match");
-        } else {
+            alert("Passwords do not match");
+        }  else if (checkPasswordStrength(newPassword) < 4) {
+            alert('Please ensure the password is strong enough (includes uppercase, lowercase, numbers, and symbols).');
+            return;
+        }else {
             confirmPasswordInput.setCustomValidity("");
         }
     });
 
     // Check if the password is strong
-    if (checkPasswordStrength(newPassword) < 4) {
-        alert('Please ensure the password is strong enough (includes uppercase, lowercase, numbers, and symbols).');
-        return;
-    }
+   
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
