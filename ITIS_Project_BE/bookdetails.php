@@ -11,9 +11,27 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $method = $_SERVER['REQUEST_METHOD'];
+$authHeader = null;
+
+function getAuthorizationHeader() {
+    $headers = null;
+    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+    } elseif (function_exists('apache_request_headers')) {
+        $requestHeaders = apache_request_headers();
+        // Check for both normal and lowercase.
+        $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : 
+                    (isset($requestHeaders['authorization']) ? trim($requestHeaders['authorization']) : null);
+    }
+    return $headers;
+}
 
 try {
-    $decodedToken = validateToken($_SERVER['HTTP_AUTHORIZATION']);
+    $authHeader = getAuthorizationHeader();
+
+    $decodedToken = validateToken($authHeader);
     if ($decodedToken['exp'] < time()) {
         http_response_code(401);
         echo json_encode(["success" => false, "message" => "Token has expired"]);
