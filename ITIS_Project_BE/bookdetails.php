@@ -14,16 +14,18 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // Function to get the authorization header from the request
 function getAuthorizationHeader() {
+    $headers = null;
     if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-        return trim($_SERVER['HTTP_AUTHORIZATION']);
+        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
     } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-        return trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
     } elseif (function_exists('apache_request_headers')) {
         $requestHeaders = apache_request_headers();
-        $authorizationHeader = $requestHeaders['Authorization'] ?? $requestHeaders['authorization'] ?? null;
-        return trim($authorizationHeader);
+        // Check for both normal and lowercase.
+        $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : 
+                    (isset($requestHeaders['authorization']) ? trim($requestHeaders['authorization']) : null);
     }
-    return null;
+    return $headers;
 }
 
 try {
