@@ -9,16 +9,27 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require 'validate_token.php';
+function getAuthorizationHeader() {
+    $headers = null;
+    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+    } elseif (function_exists('apache_request_headers')) {
+        $requestHeaders = apache_request_headers();
+        // Check for both normal and lowercase.
+        $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : 
+                    (isset($requestHeaders['authorization']) ? trim($requestHeaders['authorization']) : null);
+    }
+    return $headers;
+}
 
 try {
-    // Fetch Authorization header
-    $authHeader = null;
 
-    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-        $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
-    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-        $authHeader = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
-    }
+    $authHeader = null;
+    $authHeader = getAuthorizationHeader();
+    // Fetch Authorization header
+   
 
     // Validate the token
     $decodedToken = validateToken($authHeader);
