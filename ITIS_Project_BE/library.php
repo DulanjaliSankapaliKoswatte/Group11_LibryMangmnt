@@ -19,7 +19,9 @@ use Aws\S3\S3Client;
 $provider = CredentialProvider::defaultProvider();
 use Aws\Exception\AwsException;
 
-
+// Log all headers for debugging
+$headers = getallheaders();
+error_log("Received headers: " . json_encode($headers));
 
 // Create an S3 client
 $s3 = new S3Client([

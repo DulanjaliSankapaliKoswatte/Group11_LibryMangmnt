@@ -10,14 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'login.html'; // Redirect to login page if no token
                 return;
             }
+            console.log('Making API call with token');
             fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/library.php', {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => {
+                console.log('Response received:', response);
                 if (!response.ok) {
+                    
                     // return response.text().then(text => { throw new Error(text) });
                     return refreshAccessToken().then(newToken => {
                         if (newToken) {
@@ -33,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(data => {
+                console.log('Data:', data);
                 if (data.success) {
                     bookList = data.data;
                     displayBooks(bookList);
