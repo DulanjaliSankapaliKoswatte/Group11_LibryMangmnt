@@ -1,63 +1,41 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");  // You can also use '*' to allow all origins
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: POST, OPTIONS");  // Ensure to allow POST for your request
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 
-
+require __DIR__ . '/../../vendor/autoload.php';
 require 'validate_token.php';
 
+use Aws\Credentials\CredentialProvider;
+use Aws\S3\S3Client;
+use Aws\Exception\AwsException;
+
+// Use the default credential provider
+$provider = CredentialProvider::defaultProvider();
+
+// Create an S3 client using the default credentials provider
+$s3Client = new S3Client([
+    'version' => 'latest',
+    'region'  => 'ap-southeast-2', // Example: 'us-east-1'
+    'credentials' => $provider
+]);
+
+$bucketName = 'itis-group11_librymanagment'; // Replace with your actual bucket name
+
 try {
-    // Fetch Authorization header
-    $authHeader = null;
-
-    function getAuthorizationHeader() {
-        $headers = null;
-        if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-            $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
-        } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-            $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
-        } elseif (function_exists('apache_request_headers')) {
-            $requestHeaders = apache_request_headers();
-            // Check for both normal and lowercase.
-            $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : 
-                       (isset($requestHeaders['authorization']) ? trim($requestHeaders['authorization']) : null);
-        }
-        return $headers;
-    }
-    
-    
-    
-    try {
-        // $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null;
     $authHeader = getAuthorizationHeader();
-
-    // Validate the token
     $decodedToken = validateToken($authHeader);
 
-    // Access the payload
-    $username = $decodedToken['payload']['username']; // Assuming the token has a 'username' claim
+    $username = $decodedToken['payload']['username'];
     $issuedAt = $decodedToken['payload']['iat'];
     $expirationTime = $decodedToken['payload']['exp'];
 
-    error_log('Username: ' . $username);
-    error_log('Issued At: ' . date('Y-m-d H:i:s', $issuedAt));
-    error_log('uploadbooks.php Expiration Time: ' . date('Y-m-d H:i:s', $expirationTime));
-
     if ($expirationTime < time()) {
-        // Log an appropriate message or handle it as needed
-        error_log("Token has expired");
-        http_response_code(401);  // Set HTTP status code to 401 Unauthorized
-        echo json_encode([
-            "success" => false,
-            "message" => "Token has expired",
-            "data" => null
-        ]);
-        exit;
+        throw new Exception("Token has expired");
     }
-
 } catch (Exception $e) {
-    error_log($e->getMessage());
+    http_response_code(401);
     echo json_encode([
         "success" => false,
         "message" => $e->getMessage(),
@@ -66,40 +44,46 @@ try {
     exit;
 }
 
-// Set up the response array
 $response = ['success' => false, 'message' => ''];
 
-// Specify where to save the uploaded files
-$uploadDirectory = __DIR__ . '/Files/';
-
-// Check if the directory exists, if not create it
-if (!is_dir($uploadDirectory)) {
-    mkdir($uploadDirectory, 0777, true);
-}
-
-// Check if file is uploaded
 if (isset($_FILES['file'])) {
     $file = $_FILES['file'];
-    $filePath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . basename($file['name']);
-    
+    $keyName = 'Files/' . basename($file['name']); // S3 Key
 
-    // You can add file validation checks here (e.g., file size, type)
-    if ($file['size'] > 10000000) { // for example, limit file size to 10MB
-        $response['message'] = 'File size is too large. Please upload a smaller file.';
-    } else {
-        // Move the uploaded file to the uploads directory
-        if (move_uploaded_file($file['tmp_name'], $filePath)) {
-            $response['success'] = true;
-            $response['message'] = 'File uploaded successfully.';
-        } else {
-            $response['message'] = 'Failed to upload file.';
-        }
+    try {
+        // Upload the file to the bucket
+        $result = $s3Client->putObject([
+            'Bucket' => $bucketName,
+            'Key'    => $keyName,
+            'SourceFile' => $file['tmp_name'],
+            'ACL'    => 'public-read' // or 'private' depending on your needs
+        ]);
+
+        $response['success'] = true;
+        $response['message'] = 'File uploaded successfully to S3.';
+        $response['data'] = [
+            'objectUrl' => $result['ObjectURL'] // Get the URL of the uploaded object
+        ];
+    } catch (AwsException $e) {
+        $response['message'] = 'Failed to upload file to S3: ' . $e->getMessage();
     }
 } else {
     $response['message'] = 'No file was uploaded.';
 }
 
-// Return the response as JSON
 header('Content-Type: application/json');
 echo json_encode($response);
+
+function getAuthorizationHeader() {
+    $headers = null;
+    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+    } elseif (function_exists('apache_request_headers')) {
+        $requestHeaders = apache_request_headers();
+        $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : null;
+    }
+    return $headers;
+}
 ?>
