@@ -4,7 +4,7 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST, GET");
 
 require 'validate_token.php';
-require 'db_connection.php'; // Database connection
+require 'db_connection.php'; 
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
