@@ -17,7 +17,7 @@ $provider = CredentialProvider::defaultProvider();
 // Create an S3 client using the default credentials provider
 $s3Client = new S3Client([
     'version' => 'latest',
-    'region'  => 'ap-southeast-2', // Example: 'us-east-1'
+    'region'  => 'ap-southeast-1', // Example: 'us-east-1'
     'credentials' => $provider
 ]);
 

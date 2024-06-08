@@ -26,7 +26,7 @@ error_log("Received headers: " . json_encode($headers));
 // Create an S3 client
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'ap-southeast-2',
+    'region'  => 'ap-southeast-1',
     'credentials' => $provider
 ]);
 
