@@ -3,11 +3,11 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-require __DIR__ . '/../../vendor/autoload.php'; // Use __DIR__ to ensure the correct path
+require __DIR__ . '/../../vendor/autoload.php'; //  __DIR__ to ensure the correct path
 use \Firebase\JWT\JWT;
 
-$key = "Group11"; // Change this to your secret key
-$ttl = 3600; // Time-To-Live for the token (1 hour)
+$key = "Group11"; 
+$ttl = 60; // Time-To-Live for the token (1 hour)
 $refreshttl = 129600;
 $algorithm = "HS256"; // Specify the algorithm
 //6LcljfEpAAAAAFo1fJnU2CGqCLmQwwdzxPDzkxUY

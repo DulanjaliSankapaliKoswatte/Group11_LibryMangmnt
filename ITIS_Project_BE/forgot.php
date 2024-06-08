@@ -11,8 +11,8 @@ error_reporting(E_ALL);
 // Start output buffering to catch any unwanted output
 ob_start();
 
-require 'db_connection.php'; // Ensure you have a file to handle DB connection
-require 'send_email.php'; // Ensure you have a file to handle sending emails
+require 'db_connection.php'; 
+require 'send_email.php'; 
 
 try {
     // Check database connection

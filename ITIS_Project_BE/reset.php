@@ -11,7 +11,7 @@ error_reporting(E_ALL);
 // Start output buffering to catch any unwanted output
 ob_start();
 
-require 'db_connection.php'; // Ensure you have a file to handle DB connection
+require 'db_connection.php'; 
 
 try {
     // Check database connection

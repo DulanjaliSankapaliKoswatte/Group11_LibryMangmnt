@@ -3,12 +3,12 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
-require __DIR__ . '/../../vendor/autoload.php'; // Ensure your autoload path is correct
+require __DIR__ . '/../../vendor/autoload.php'; 
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
 $key = "Group11"; // Secret key for JWT
-$ttl = 3600; // Time-To-Live for the access token (1 hour)
+$ttl = 60; // Time-To-Live for the access token (1 hour)
 $algorithm = "HS256"; // Algorithm used for token
 
 function getNewAccessTokenUsingExpiredToken($expiredToken, $key, $ttl, $algorithm) {

@@ -1,6 +1,6 @@
 function refreshAccessToken() {
     // Get the expired access token from localStorage
-    const expiredToken = localStorage.getItem('token'); // Ensure you are storing the expired token under 'token'
+    const expiredToken = localStorage.getItem('token');
 
     return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refreshtoken.php', {
         method: 'POST',
@@ -29,6 +29,6 @@ function refreshAccessToken() {
     })
     .catch(error => {
         console.error('Error refreshing access token:', error);
-        return null; // Ensure null is returned in case of error
+        return null; 
     });
 }

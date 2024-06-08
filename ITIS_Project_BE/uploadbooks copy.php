@@ -1,8 +1,8 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");  // You can also use '*' to allow all origins
+header("Access-Control-Allow-Origin: *");  
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Methods: POST, OPTIONS");  // Ensure to allow POST for your request
+header("Access-Control-Allow-Methods: POST, OPTIONS");  
 
 
 require 'validate_token.php';
@@ -83,7 +83,7 @@ if (isset($_FILES['file'])) {
     $filePath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . basename($file['name']);
     
 
-    // You can add file validation checks here (e.g., file size, type)
+  
     if ($file['size'] > 10000000) { // for example, limit file size to 10MB
         $response['message'] = 'File size is too large. Please upload a smaller file.';
     } else {

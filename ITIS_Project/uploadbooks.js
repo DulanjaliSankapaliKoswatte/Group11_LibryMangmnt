@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Prevent the default form submission
 
         const formData = new FormData(form);
-        formData.append('file', document.getElementById('file').files[0]); // Ensure file is appended for S3 upload
+        formData.append('file', document.getElementById('file').files[0]); 
         const fileInput = document.getElementById('file');
         const file = fileInput.files[0];
         const filename = file.name;
