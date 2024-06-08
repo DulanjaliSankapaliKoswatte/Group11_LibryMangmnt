@@ -26,11 +26,11 @@ error_log("Received headers: " . json_encode($headers));
 // Create an S3 client
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'global',
+    'region'  => 'ap-southeast-2',
     'credentials' => $provider
 ]);
 
-$bucketName = 'itis-group11_librymanagment';
+$bucketName = 'itis-group11-librymanagment';
 
 function getAuthorizationHeader() {
     $headers = null;
