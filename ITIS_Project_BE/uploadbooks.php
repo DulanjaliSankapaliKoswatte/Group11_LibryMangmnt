@@ -27,7 +27,10 @@ try {
     }
     
     
-
+    
+    try {
+        // $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null;
+    $authHeader = getAuthorizationHeader();
 
     // Validate the token
     $decodedToken = validateToken($authHeader);
