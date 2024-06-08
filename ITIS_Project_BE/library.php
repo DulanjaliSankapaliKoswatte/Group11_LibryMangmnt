@@ -30,7 +30,7 @@ $s3 = new S3Client([
     'credentials' => $provider
 ]);
 
-$bucketName = 'itis-group11-librymanagment';
+$bucketName = 'itis-group11-librymanagment2';
 
 function getAuthorizationHeader() {
     $headers = null;

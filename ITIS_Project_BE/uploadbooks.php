@@ -21,7 +21,7 @@ $s3Client = new S3Client([
     'credentials' => $provider
 ]);
 
-$bucketName = 'itis-group11-librymanagment'; // Replace with your actual bucket name
+$bucketName = 'itis-group11-librymanagment2'; // Replace with your actual bucket name
 
 try {
     $authHeader = getAuthorizationHeader();
@@ -48,7 +48,7 @@ $response = ['success' => false, 'message' => ''];
 
 if (isset($_FILES['file'])) {
     $file = $_FILES['file'];
-    $keyName = 'Files/' . basename($file['name']); // S3 Key
+    $keyName = '' . basename($file['name']); // S3 Key
 
     try {
         // Upload the file to the bucket
