@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return token;
             } else {
                 window.location.href = 'login.html';
-                throw new Error('Token refresh failed'); 
+                throw new Error('Token refresh failed'); // Ensure the flow is interrupted by throwing an error
             }
         })
         .catch(() => {
