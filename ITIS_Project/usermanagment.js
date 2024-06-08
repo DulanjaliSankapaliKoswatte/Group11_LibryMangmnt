@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let token = localStorage.getItem('token'); 
 
     function refreshAccessToken() {
+        const token = localStorage.getItem('token');
+            if (!token) {
+                console.log("No Token!");
+                window.location.href = 'login.html'; // Redirect to login page if no token
+                return;
+            }
         return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refresh_token_endpoint', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -80,6 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Consolidated the error handling and token refresh logic in modify operations
     function performUserModification(url, options, callback) {
+        if (!token) {
+            console.log("No Token!");
+            window.location.href = 'login.html'; // Redirect to login page if no token
+            return;
+        }
         fetch(url, options)
         .then(response => {
             if (!response.ok) {

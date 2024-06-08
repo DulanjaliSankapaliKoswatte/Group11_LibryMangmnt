@@ -1,7 +1,11 @@
 function refreshAccessToken() {
     // Get the expired access token from localStorage
     const expiredToken = localStorage.getItem('token');
-
+    if (!expiredToken) {
+        console.log("No Token!");
+        window.location.href = 'login.html'; // Redirect to login page if no token
+        return;
+    }
     return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refreshtoken.php', {
         method: 'POST',
         headers: {
