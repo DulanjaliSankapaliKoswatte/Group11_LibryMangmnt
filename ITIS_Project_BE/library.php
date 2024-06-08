@@ -32,8 +32,28 @@ $s3 = new S3Client([
 
 $bucketName = 'itis-group11_librymanagment';
 
+function getAuthorizationHeader() {
+    $headers = null;
+    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+    } else if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) { // Sometimes used depending on server configuration
+        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+    } else if (function_exists('apache_request_headers')) {
+        $requestHeaders = apache_request_headers();
+        // Server might capitalize all header keys
+        $requestHeaders = array_combine(array_map('ucwords', array_keys($requestHeaders)), array_values($requestHeaders));
+        if (isset($requestHeaders['Authorization'])) {
+            $headers = trim($requestHeaders['Authorization']);
+        }
+    }
+    return $headers;
+}
+
+
+
 try {
-    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null;
+    // $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? null;
+    $authHeader = getAuthorizationHeader();
     $decodedToken = validateToken($authHeader);
     $username = $decodedToken['payload']['username'];
     $issuedAt = $decodedToken['payload']['iat'];
