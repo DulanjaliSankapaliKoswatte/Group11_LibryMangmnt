@@ -37,7 +37,24 @@ try {
                 exit;
             }
         }
-    } else {
+    } else if ($method === 'POST') {
+        $title = $_POST['title'];
+        $isbn = $_POST['isbn'];
+        $author = $_POST['author'];
+        $year = $_POST['year'];
+        $category = $_POST['category'];
+        $file = $_FILES['file'];
+
+        // File upload path
+        $uploadPath = 'uploads/' . basename($file['name']);
+        move_uploaded_file($file['tmp_name'], $uploadPath);
+
+        // Insert book into database
+        $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category, file_location) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$title, $isbn, $author, $year, $category, $uploadPath]);
+
+        echo json_encode(["success" => true, "message" => "Book uploaded successfully"]);
+    }else {
         // Fetch books data
         $query = "SELECT id, ISBN, Author_name, Year_made, Category, book_title, file_location FROM Book_Details";
         $result = $pdo->query($query);
