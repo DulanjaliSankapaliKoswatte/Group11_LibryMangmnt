@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
-                }
+                },
+                credentials: 'include'
             })
             .then(response => {
                 console.log('Response received:', response);
