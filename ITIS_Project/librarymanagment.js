@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 console.log("Library management JS loaded4!");
                 if (data.success) {
+                    console.log("Library management JS loaded5!");
                     bookList = data.data;
                     displayBooks(bookList);
                 } else if (data.message === 'Token has expired') {

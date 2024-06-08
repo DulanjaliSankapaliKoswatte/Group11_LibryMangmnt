@@ -11,11 +11,23 @@ try {
     // Fetch Authorization header
     $authHeader = null;
 
-    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-        $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
-    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-        $authHeader = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+    function getAuthorizationHeader() {
+        $headers = null;
+        if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+            $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+        } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+            $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+        } elseif (function_exists('apache_request_headers')) {
+            $requestHeaders = apache_request_headers();
+            // Check for both normal and lowercase.
+            $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : 
+                       (isset($requestHeaders['authorization']) ? trim($requestHeaders['authorization']) : null);
+        }
+        return $headers;
     }
+    
+    
+
 
     // Validate the token
     $decodedToken = validateToken($authHeader);
