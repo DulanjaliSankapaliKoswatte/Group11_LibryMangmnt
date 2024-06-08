@@ -12,8 +12,7 @@ $ttl = 60; // Time-To-Live for the access token (1 hour)
 $algorithm = "HS256"; // Algorithm used for token
 
 function getNewAccessTokenUsingExpiredToken($expiredToken, $key, $ttl, $algorithm) {
-    // $token = str_replace('Bearer ', '', $expiredToken); // Remove 'Bearer ' prefix
-    // error_log("Attempting to decode token: $token");
+    
 
     try {
         $token = str_replace('Bearer ', '', $expiredToken); // Remove 'Bearer ' prefix

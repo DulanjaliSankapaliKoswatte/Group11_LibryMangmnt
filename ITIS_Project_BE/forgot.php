@@ -11,7 +11,7 @@ error_reporting(E_ALL);
 // Start output buffering to catch any unwanted output
 ob_start();
 
-require 'db_connection.php'; 
+require 'db_connection.php';  
 require 'send_email.php'; 
 
 try {

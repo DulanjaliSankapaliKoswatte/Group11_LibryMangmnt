@@ -1,25 +1,32 @@
 <html>
 
 <head>
-    <title>Admin option Selection page</title>
+    <title>Admin Option Selection Page</title>
     <link rel="stylesheet" href="adminlibrary.css">
 </head>
 <body>
     <div class="container">
-        <button class="image-button">
-            <img src="catalog.jpg" alt="Library">
-            <span>Book</span>
-            <p><a href="librarymanagment.html">Library Managment</a></p>
+      
+            <form id="library" action="librarymanagment.html">
+            <button class="image-button">
+            <span>Manage Books</span>
         </button>
+        </form>
+            <form id="user" action="usermanagment.html">
+                <button class="image-button">
+                <span>Manage Users</span>
+                </button>
+            </form>
+       <form id="login" action="login.html">
         <button class="image-button">
-            <img src="user.jpg" alt="User">
-            <span>User</span>
-            <p><a href="usermanagment.html">User Managment</a></p>
-        </button>
-    </div>
+            <span>Log out</span>
 
-    <a href="login.html">Log out</a>
-    </div>
+        </button>
+        </form>
+       
+
+        </div>
+    
     <script src="refreshtoken.js"></script>
 
 </body>

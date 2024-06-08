@@ -6,8 +6,8 @@ header("Access-Control-Allow-Methods: POST, GET");
 require 'validate_token.php';
 require 'db_connection.php';
 
-ini_set('display_errors', 0); // Turn off error reporting in production
-error_reporting(0);
+// ini_set('display_errors', 0); // Turn off error reporting in production
+// error_reporting(0);
 
 $method = $_SERVER['REQUEST_METHOD'];
 

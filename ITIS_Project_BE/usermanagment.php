@@ -4,9 +4,11 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
 // Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
+require 'db_connection.php';  
 
 require 'validate_token.php';
 function getAuthorizationHeader() {
@@ -73,15 +75,15 @@ $role = isset($_GET['role']) ? $_GET['role'] : null;
 $input = json_decode(file_get_contents('php://input'), true);
 $response = ['success' => false, 'message' => ''];
 
-$conn = new mysqli('127.0.0.1', 'appuser', 'Abcd@1234', 'library_managment');
+// $conn = new mysqli('127.0.0.1', 'appuser', 'Abcd@1234', 'library_managment');
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
 
 switch ($method) {
     case 'GET':
-        $result = $conn->query("SELECT * FROM users");
+        $result = $pdo->query("SELECT * FROM users");
         $users = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode($users);
         break;

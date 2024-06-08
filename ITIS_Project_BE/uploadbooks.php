@@ -21,7 +21,7 @@ $s3Client = new S3Client([
     'credentials' => $provider
 ]);
 
-$bucketName = 'itis-group11-librymanagment2'; // Replace with your actual bucket name
+$bucketName = 'itis-group11-librymanagment2'; 
 
 $authHeader = null;
 

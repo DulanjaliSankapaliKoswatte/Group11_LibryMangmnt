@@ -16,7 +16,7 @@ use Aws\Exception\AwsException;
 $provider = CredentialProvider::defaultProvider();
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'ap-southeast-1', // Make sure the region is correct
+    'region'  => 'ap-southeast-1', 
     'credentials' => $provider
 ]);
 

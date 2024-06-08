@@ -1,64 +1,52 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: lightgrey;
+    background-color: lightslategray;
     font-family: Arial, Helvetica, sans-serif;
+   
 }
 
+span{
+    font-size: 18px;
+    font-weight: bold;
 
+}
+.container {
 
-
-.container{
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 50px;
-    justify-content: center;
-    margin: 50px;
-
-
+    background-color: lavenderblush;
+    border: 2px solid;
+    padding: 30px;
+    border: none;
+    text-align: center;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    height: 55vh;
 }
 
 
 
 .image-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightseagreen;
-    color: #fff;
+    padding: 10px ;
     border: none;
-    border-radius: 4px;
-    padding: 30px;
-    margin-right: 20px;
+    background-color: lightgreen;
+    border-radius: 5px;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: opacity 0.3s;
-}
+    margin: 8px;
+    background-color: lightseagreen;
+    width: 100%;
+    max-width: 300px;
+    height: 60px;
 
-.image-button img {
-    width: 200px; /* Adjust the size as needed */
-    height: 200px; /* Adjust the size as needed */
-    margin-bottom: 30px;
-}
-
-.image-button span {
-    font-size: 18px;
-}
-
-.image-button:hover {
-    opacity: 0.8;
+    
+    
 }
