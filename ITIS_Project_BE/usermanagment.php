@@ -4,11 +4,9 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
 // Enable error reporting for debugging
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require 'validate_token.php';
 function getAuthorizationHeader() {
@@ -33,11 +31,12 @@ try {
     // Fetch Authorization header
    
 
+
     // Validate the token
     $decodedToken = validateToken($authHeader);
 
     // Access the payload
-    $username = $decodedToken['payload']['username'];
+    $username = $decodedToken['payload']['username']; // Assuming the token has a 'username' claim
     $issuedAt = $decodedToken['payload']['iat'];
     $expirationTime = $decodedToken['payload']['exp'];
 
@@ -46,7 +45,7 @@ try {
     error_log('Expiration Time: ' . date('Y-m-d H:i:s', $expirationTime));
 
     if ($expirationTime < time()) {
-       
+        // Log an appropriate message or handle it as needed
         error_log("Token has expired");
         http_response_code(401);  // Set HTTP status code to 401 Unauthorized
         echo json_encode([
@@ -83,7 +82,7 @@ if ($conn->connect_error) {
 
 switch ($method) {
     case 'GET':
-        $result = $pdo->query("SELECT * FROM users");
+        $result = $conn->query("SELECT * FROM users");
         $users = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode($users);
         break;
