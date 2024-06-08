@@ -53,6 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Check if the password is strong
+    if (checkPasswordStrength(newPassword) < 4) {
+        alert('Please ensure the password is strong enough (includes uppercase, lowercase, numbers, and symbols).');
+        return;
+    }
+
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         const resetCode = document.getElementById('reset-code').value;
