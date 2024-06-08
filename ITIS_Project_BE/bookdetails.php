@@ -21,9 +21,10 @@ try {
         $author = $_POST['author'] ?? '';
         $year = $_POST['year'] ?? '';
         $category = $_POST['category'] ?? '';
+        $filename = $_POST['filename'] ?? '';
 
-        $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$title, $isbn, $author, $year, $category]);
+        $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category, file_location) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$title, $isbn, $author, $year, $category, $filename]);
         echo json_encode(["success" => true, "message" => "Book details saved successfully"]);
     } else if ($method === 'GET') {
         $stmt = $pdo->query("SELECT * FROM Book_Details");

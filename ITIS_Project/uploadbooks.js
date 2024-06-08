@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData(form);
         formData.append('file', document.getElementById('file').files[0]); // Ensure file is appended for S3 upload
-
+        const filename = fileInput.files[0];
         // First, upload book details to the database
         const bookDetailsData = new FormData();
         bookDetailsData.append('title', document.getElementById('title').value);
@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         bookDetailsData.append('author', document.getElementById('author').value);
         bookDetailsData.append('year', document.getElementById('year').value);
         bookDetailsData.append('category', document.getElementById('category').value);
+        bookDetailsData.append('filename', filename);
         
         
         fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/bookdetails.php', {
