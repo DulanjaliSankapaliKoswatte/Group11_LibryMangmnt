@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'login.html'; // Redirect to login page if no token
                 return;
             }
-        return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refresh_token_endpoint', {
+        return fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/refreshtoken.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') })
