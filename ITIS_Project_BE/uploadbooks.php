@@ -42,6 +42,7 @@ function getAuthorizationHeader() {
 
 try {
     $authHeader = getAuthorizationHeader();
+    error_log("Authorization Header at uploadbooks.php: " . $authHeader); 
     $decodedToken = validateToken($authHeader);
 
     $username = $decodedToken['payload']['username'];
@@ -69,6 +70,7 @@ if (isset($_FILES['file'])) {
 
     try {
         // Upload the file to the bucket
+        error_log("Upload the file to the bucket "); 
         $result = $s3Client->putObject([
             'Bucket' => $bucketName,
             'Key'    => $keyName,
@@ -81,7 +83,9 @@ if (isset($_FILES['file'])) {
         $response['data'] = [
             'objectUrl' => $result['ObjectURL'] // Get the URL of the uploaded object
         ];
+        error_log("Upload the file to the bucket DOne"); 
     } catch (AwsException $e) {
+        error_log("Upload the file to the bucket error" . $e); 
         $response['message'] = 'Failed to upload file to S3: ' . $e->getMessage();
     }
 } else {
