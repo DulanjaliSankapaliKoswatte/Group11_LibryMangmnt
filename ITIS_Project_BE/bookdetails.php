@@ -24,7 +24,11 @@ try {
         // Handle file download
         $stmt = $pdo->prepare("SELECT file_location FROM Book_Details WHERE book_title = ?");
         $stmt->bindParam(1, $fileName);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            // Log SQL error here
+            error_log("Error executing SQL: " . implode(";", $stmt->errorInfo()));
+            throw new Exception("Error executing SQL: " . $stmt->errorInfo()[2]);
+        }
         $file = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($file && file_exists($filePath = 'path/to/files/' . $file['file_location'])) {
             http_response_code(200);
@@ -49,17 +53,27 @@ try {
         }
 
         $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category, file_location) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$title, $isbn, $author, $year, $category, $uploadPath]);
+        if (!$stmt->execute([$title, $isbn, $author, $year, $category, $uploadPath])) {
+            // Log SQL error here
+            error_log("Error executing SQL: " . implode(";", $stmt->errorInfo()));
+            throw new Exception("Error executing SQL: " . $stmt->errorInfo()[2]);
+        }
 
         echo json_encode(["success" => true, "message" => "Book uploaded successfully"]);
     } else {
         // Fetch books data
         $result = $pdo->query("SELECT id, ISBN, Author_name, Year_made, Category, book_title, file_location FROM Book_Details");
+        if (!$result) {
+            // Log SQL error here
+            error_log("Error executing SQL: " . implode(";", $pdo->errorInfo()));
+            throw new Exception("Error executing SQL: " . $pdo->errorInfo()[2]);
+        }
         $books = $result->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(["success" => true, "data" => $books]);
     }
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(["success" => false, "message" => $e->getMessage()]);
+    error_log("Caught Exception: " . $e->getMessage());
 }
 ?>
