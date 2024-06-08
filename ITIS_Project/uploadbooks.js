@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData,
                 headers: {
                     'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json' // This might need to be removed since you're sending FormData
                 },
             }),
             fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/uploadbooks.php', {
