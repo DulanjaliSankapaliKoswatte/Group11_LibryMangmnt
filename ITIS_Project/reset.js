@@ -54,10 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Check if the password is strong
-        if (checkPasswordStrength(passwordInput.value) < 4) {
-            alert('Please ensure the password is strong enough (includes uppercase, lowercase, numbers, and symbols).');
-            return;
-        }
+    
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -69,6 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Passwords do not match. Please try again.');
             return;
         }
+
+        const passwordStrength = checkPasswordStrength(newPassword);
+            if (passwordStrength < 4) {
+                alert('Password is too weak. Please make it stronger.');
+                return;
+            }
+
         const encryptedPassword = btoa(unescape(encodeURIComponent(newPassword)));
         console.error('newPassword:', newPassword);
         console.error('encryptedPassword:', encryptedPassword);
