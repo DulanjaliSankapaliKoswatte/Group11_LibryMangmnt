@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('forgot-password-form');
+    const form = document.getElementById('forgot-form');
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
