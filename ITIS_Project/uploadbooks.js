@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Error uploading book details or file. ' + error);
+            alert('Error uploading book details or file. ' + error.message);
         });
     });
 });

@@ -54,12 +54,12 @@ try {
         error_log("Books list: " .  $books);
         echo json_encode(["success" => true, "data" => $books]);
     }else if ($method === 'POST') {
-        $title = $_POST['title'];
-        $isbn = $_POST['isbn'];
-        $author = $_POST['author'];
-        $year = $_POST['year'];
-        $category = $_POST['category'];
-        $file = $_FILES['file'];
+        $title = $_POST['title']?? '';
+        $isbn = $_POST['isbn']?? '';
+        $author = $_POST['author']?? '';
+        $year = $_POST['year']?? '';
+        $category = $_POST['category']?? '';
+        // $file = $_FILES['file']?? '';
 
         error_log("Attempting to upload file: " . $file['name']);  // Debug log
 
@@ -68,8 +68,8 @@ try {
         //     throw new Exception("Failed to upload file.");
         // }
 
-        $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category, file_location) VALUES (?, ?, ?, ?, ?, ?)");
-        if (!$stmt->execute([$title, $isbn, $author, $year, $category,  $file])) {
+        $stmt = $pdo->prepare("INSERT INTO Book_Details (book_title, ISBN, Author_name, Year_made, Category) VALUES (?, ?, ?, ?, ?)");
+        if (!$stmt->execute([$title, $isbn, $author, $year, $category])) {
             error_log("Error executing SQL: " . implode(";", $stmt->errorInfo()));
             throw new Exception("Error executing SQL: " . $stmt->errorInfo()[2]);
         }
