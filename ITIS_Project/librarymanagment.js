@@ -72,21 +72,26 @@ document.addEventListener('DOMContentLoaded', function() {
             books.forEach((book, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${book.name}</td>
-                    <td><a href="#" class="download-link" data-file="${book.name}">Download</a></td>
+                    <td>${book.id}</td>
+                    <td>${book.ISBN}</td>
+                    <td>${book.Author_name}</td>
+                    <td>${book.Year_made}</td>
+                    <td>${book.Category}</td>
+                    <td>${book.book_title}</td>
+                    <td><a href="#" class="download-link" data-file="${book.file_location}">Download</a></td>
                 `;
                 bookListElement.appendChild(row);
             });
-
+        
             document.querySelectorAll('.download-link').forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault();
-                    const fileName = this.getAttribute('data-file');
-                    downloadFile(fileName);
+                    const fileLocation = this.getAttribute('data-file');
+                    downloadFile(fileLocation);
                 });
             });
         };
+        
 
         const downloadFile = (fileName) => {
             const token = localStorage.getItem('token'); // Retrieve the token
