@@ -23,6 +23,23 @@ $s3Client = new S3Client([
 
 $bucketName = 'itis-group11-librymanagment2'; // Replace with your actual bucket name
 
+$authHeader = null;
+
+function getAuthorizationHeader() {
+    $headers = null;
+    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
+    } elseif (function_exists('apache_request_headers')) {
+        $requestHeaders = apache_request_headers();
+        // Check for both normal and lowercase.
+        $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : 
+                    (isset($requestHeaders['authorization']) ? trim($requestHeaders['authorization']) : null);
+    }
+    return $headers;
+}
+
 try {
     $authHeader = getAuthorizationHeader();
     $decodedToken = validateToken($authHeader);
