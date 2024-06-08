@@ -11,7 +11,11 @@ error_reporting(E_ALL);
 require __DIR__ . '/../../vendor/autoload.php';
 require 'validate_token.php';
 
+use Aws\Credentials\CredentialProvider;
 use Aws\S3\S3Client;
+
+// Use the default credential provider
+$provider = CredentialProvider::defaultProvider();
 use Aws\Exception\AwsException;
 
 
@@ -19,7 +23,8 @@ use Aws\Exception\AwsException;
 // Create an S3 client
 $s3 = new S3Client([
     'version' => 'latest',
-    'region'  => 'global'
+    'region'  => 'global',
+    'credentials' => $provider
 ]);
 
 $bucketName = 'itis-group11_librymanagment';
