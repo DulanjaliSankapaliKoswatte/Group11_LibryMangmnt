@@ -85,7 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(`https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/library.php?file=${fileName}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => {
