@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token');
 
     form.addEventListener('submit', function(event) {
+
+        if (!token) {
+            console.log("No Token!");
+            window.location.href = 'login.html'; // Redirect to login page if no token
+            return;
+        }
         event.preventDefault(); // Prevent the default form submission
 
         const formData = new FormData(form);
