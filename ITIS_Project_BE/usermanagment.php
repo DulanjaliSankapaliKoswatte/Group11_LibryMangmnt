@@ -83,38 +83,35 @@ $response = ['success' => false, 'message' => ''];
 
 switch ($method) {
     case 'GET':
-        $result = $pdo->query("SELECT * FROM users");
-        $users = $result->fetchall(MYSQLI_ASSOC);
+        $stmt = $pdo->query("SELECT * FROM users");
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Corrected method call
         echo json_encode($users);
         break;
     case 'POST':
         if ($id && $input) {
             // Updating user details
             $userrole = $input['userrole'];
-            $stmt = $conn->prepare("UPDATE users SET userrole = ? WHERE id = ?");
-            $stmt->bind_param("si", $userrole, $id);
-            $response['success'] = $stmt->execute();
-            $stmt->close();
+            $stmt = $pdo->prepare("UPDATE users SET userrole = ? WHERE id = ?");
+            $stmt->execute([$userrole, $id]);
+            $response['success'] = $stmt->rowCount() > 0;  // Success based on rows affected
         } elseif ($id && $toggle) {
             // Toggling status or role
             if ($toggle === 'status' && $status !== null) {
-                $stmt = $conn->prepare("UPDATE users SET active = ? WHERE id = ?");
-                $stmt->bind_param("ii", $status, $id);
+                $stmt = $pdo->prepare("UPDATE users SET active = ? WHERE id = ?");
+                $stmt->execute([$status, $id]);
             } elseif ($toggle === 'role' && $role) {
-                $stmt = $conn->prepare("UPDATE users SET userrole = ? WHERE id = ?");
-                $stmt->bind_param("si", $role, $id);
+                $stmt = $pdo->prepare("UPDATE users SET userrole = ? WHERE id = ?");
+                $stmt->execute([$role, $id]);
             }
-            $response['success'] = $stmt->execute();
-            $stmt->close();
+            $response['success'] = $stmt->rowCount() > 0;  // Success based on rows affected
         }
         echo json_encode($response);
         break;
     case 'DELETE':
         if ($id) {
-            $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
-            $stmt->bind_param("i", $id);
-            $response['success'] = $stmt->execute();
-            $stmt->close();
+            $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+            $stmt->execute([$id]);
+            $response['success'] = $stmt->rowCount() > 0;  // Success based on rows affected
         }
         echo json_encode($response);
         break;

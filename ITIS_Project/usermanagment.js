@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return token;
             } else {
                 window.location.href = 'login.html';
-                throw new Error('Token refresh failed'); // Ensure the flow is interrupted by throwing an error
+                throw new Error('Token refresh failed'); 
             }
         })
         .catch(() => {
@@ -38,7 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             if (!response.ok) {
                 return refreshAccessToken().then(newToken => {
-                    return fetchUsers(); // Retry the request with the new token
+                    if (newToken) {
+                        localStorage.setItem('token', newToken); // Update the token in localStorage
+                        return fetchUsers(); // Retry the request with the new token
+                    } else {
+                        // throw new Error('Failed to refresh token');
+                        window.location.href = 'login.html'; // Redirect to login page if token refresh fails
+                        return Promise.reject(new Error('Failed to refresh token'));
+                    }
                 });
             }
             return response.json();
@@ -77,7 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => {
             if (!response.ok) {
                 return refreshAccessToken().then(newToken => {
-                    return callback(); // Retry the request with the new token
+                    if (newToken) {
+                        localStorage.setItem('token', newToken); // Update the token in localStorage
+                        return callback(); // Retry the request with the new token
+                    } else {
+                        // throw new Error('Failed to refresh token');
+                        window.location.href = 'login.html'; // Redirect to login page if token refresh fails
+                        return Promise.reject(new Error('Failed to refresh token'));
+                    }
                 });
             }
             return response.json();
