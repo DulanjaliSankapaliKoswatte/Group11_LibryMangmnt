@@ -35,11 +35,11 @@ try {
     $decodedToken = validateToken($authHeader);
     error_log("Token Decoded: " . print_r($decodedToken, true));  // Debug log
 
-    if ($decodedToken['exp'] < time()) {
-        http_response_code(401);
-        echo json_encode(["success" => false, "message" => "Token has expired"]);
-        exit;
-    }
+    // if ($decodedToken['exp'] < time()) {
+    //     http_response_code(401);
+    //     echo json_encode(["success" => false, "message" => "Token has expired"]);
+    //     exit;
+    // }
 
     if ($method === 'GET' && isset($_GET['file'])) {
         $fileName = $_GET['file'];
