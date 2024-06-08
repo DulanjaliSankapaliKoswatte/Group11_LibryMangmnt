@@ -150,20 +150,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         };
 
-        if (window.location.pathname.endsWith('library.html')) {
-           // const token = localStorage.getItem('token'); // Retrieve the token
-            fetchBooks();
-        }
+        // if (window.location.pathname.endsWith('library.html')) {
+        //    // const token = localStorage.getItem('token'); // Retrieve the token
+        //     fetchBooks();
+        // }
         // Call fetchBooks directly to ensure it's triggered
-        fetchBooks();
         const searchForm = document.getElementById('search-form');
-        if (searchForm) {
-            searchForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent form from submitting the default way
-                const searchTerm = document.getElementById('book-search').value.toLowerCase();
-                const filteredBooks = bookList.filter(book => book.name.toLowerCase().includes(searchTerm));
-                displayBooks(filteredBooks);
-            });
-        }
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchTerm = document.getElementById('book-search').value.toLowerCase();
+            const filteredBooks = bookList.filter(book => book.book_title.toLowerCase().includes(searchTerm));
+            displayBooks(filteredBooks);
+        });
+        
+        fetchBooks();
+       
     }
 });
