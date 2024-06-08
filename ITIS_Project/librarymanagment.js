@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Library management JS loaded!");
     // Load PDFs when library page is loaded
-    if (window.location.pathname.endsWith('librarymanagment.html')) {
+    if (window.location.pathname.endsWith('librarymanagment.html') || window.location.pathname.endsWith('library.html')) {
+        console.log("Library management script active on this page.");
         console.log("Library management JS loaded2!");
         let bookList = [];
        
