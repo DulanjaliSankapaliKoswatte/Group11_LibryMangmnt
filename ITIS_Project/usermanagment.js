@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return refreshAccessToken().then(newToken => {
                     return fetchUsers(); // Retry the request with the new token
                 });
-                
             }
             return response.json();
         })

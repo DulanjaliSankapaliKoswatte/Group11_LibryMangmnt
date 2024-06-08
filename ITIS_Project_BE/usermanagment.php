@@ -84,7 +84,7 @@ $response = ['success' => false, 'message' => ''];
 switch ($method) {
     case 'GET':
         $result = $pdo->query("SELECT * FROM users");
-        $users = $result->fetch_all(MYSQLI_ASSOC);
+        $users = $result->fetchall(MYSQLI_ASSOC);
         echo json_encode($users);
         break;
     case 'POST':
