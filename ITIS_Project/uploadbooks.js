@@ -28,8 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
             body: bookDetailsData
         })
         .then(response => {
-            response.text().then(text => console.log(text));
-            return response.json();
+            const clone = response.clone();  // Clone the response
+            response.text().then(text => console.log(text));  // Log as text
+            return clone.json();  // Parse the clone as JSON
         })
         .then(data => {
             if (!data.success) {
@@ -46,8 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .then(response => {
-            response.text().then(text => console.log(text));
-            return response.json();
+            const clone = response.clone();  // Clone the response
+            response.text().then(text => console.log(text));  // Log as text
+            return clone.json();  // Parse the clone as JSON
         })
         .then(data => {
             if (!data.success) {
