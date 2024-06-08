@@ -91,16 +91,5 @@ if (isset($_FILES['file'])) {
 header('Content-Type: application/json');
 echo json_encode($response);
 
-function getAuthorizationHeader() {
-    $headers = null;
-    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
-        $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
-    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-        $headers = trim($_SERVER['REDIRECT_HTTP_AUTHORIZATION']);
-    } elseif (function_exists('apache_request_headers')) {
-        $requestHeaders = apache_request_headers();
-        $headers = isset($requestHeaders['Authorization']) ? trim($requestHeaders['Authorization']) : null;
-    }
-    return $headers;
-}
+
 ?>
