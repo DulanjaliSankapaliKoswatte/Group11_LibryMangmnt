@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.form-container');
-    const token = localStorage.getItem('token');
+   
 
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
