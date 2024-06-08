@@ -69,7 +69,7 @@ try {
 
         error_log("Attempting to upload file: " . $file['name']);  // Debug log
 
-        $uploadPath = 'uploads/' . basename($file['name']);
+        $uploadPath = '' . basename($file['name']);
         if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
             throw new Exception("Failed to upload file.");
         }
