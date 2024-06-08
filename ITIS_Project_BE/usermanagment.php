@@ -35,7 +35,7 @@ try {
     $decodedToken = validateToken($authHeader);
 
     // Access the payload
-    $username = $decodedToken['payload']['username']; // Assuming the token has a 'username' claim
+    $username = $decodedToken['payload']['username'];
     $issuedAt = $decodedToken['payload']['iat'];
     $expirationTime = $decodedToken['payload']['exp'];
 
@@ -44,7 +44,7 @@ try {
     error_log('Expiration Time: ' . date('Y-m-d H:i:s', $expirationTime));
 
     if ($expirationTime < time()) {
-        // Log an appropriate message or handle it as needed
+       
         error_log("Token has expired");
         http_response_code(401);  // Set HTTP status code to 401 Unauthorized
         echo json_encode([

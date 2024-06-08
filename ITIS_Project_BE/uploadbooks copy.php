@@ -36,7 +36,7 @@ try {
     $decodedToken = validateToken($authHeader);
 
     // Access the payload
-    $username = $decodedToken['payload']['username']; // Assuming the token has a 'username' claim
+    $username = $decodedToken['payload']['username'];
     $issuedAt = $decodedToken['payload']['iat'];
     $expirationTime = $decodedToken['payload']['exp'];
 

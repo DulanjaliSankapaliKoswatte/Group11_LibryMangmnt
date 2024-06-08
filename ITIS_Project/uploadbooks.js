@@ -18,7 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
         bookDetailsData.append('year', document.getElementById('year').value);
         bookDetailsData.append('category', document.getElementById('category').value);
         bookDetailsData.append('filename', filename);
-        
+        token = localStorage.getItem('token')
+            if (!token) {
+                window.location.href = 'login.html'; // Redirect to login page if no token
+                return;
+            }
         
         fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/bookdetails.php', {
             method: 'POST',
