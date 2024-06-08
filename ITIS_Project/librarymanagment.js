@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'login.html'; // Redirect to login page if no token
                 return;
             }
-            etch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/bookdetails.php', {
+            fetch('https://itis-group11.com/Group11_LibryMangmnt/ITIS_Project_BE/bookdetails.php', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
