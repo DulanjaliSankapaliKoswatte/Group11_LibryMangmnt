@@ -4,92 +4,139 @@
     box-sizing: border-box;
 }
 
-
-
 body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-    background-color: lightgrey;
+    height: 100vh;
+    background-color: lightslategrey;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 100px;
+    
+    background-size: cover;
 }
 
 
 
-
-.logo{
-    width: 350px;
-   
-    padding-right: 2px; 
-     
-}
-
-.container{
-    display: flex;
-    align-items: center;
+.forgot-container{
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 50px;
-    justify-content: center;
-    margin: 50px;
-
-
-}
-
-.form-container{
-max-width: 350px;
-background-color: white;
-padding-left: 20px;
-
-}
-
-h1{
-    margin-bottom: 20px;
+    display: flex;
+    padding: 30px;
+    border: 1px solid #ccc;
     text-align: center;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    height: 87vh;
+    
+
+
+}
+.forgot-container .left, .forgot-container .right {
+    flex: 1; 
+}
+
+.forgot-container .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 0px;
+    margin: 0px;
+    flex-direction: row-reverse;
+}
+
+.forgot-container .right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.forgot-container .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    
     
 }
 
-p{
+h2{
     margin-bottom: 20px;
-    font-size: small;
-    text-align: center;
+    font-size: 24px;
+    color:#333;
+
+
 }
 
-input[type= "email"]{
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+form{
+    font-size: 24px;
+    color:#333;
+    margin-bottom: 50px;
+    margin: 0px;
+    
+    
 }
 
-input[type="submit"]{
-    width: 100%;
-    padding: 10px;  
-    background-color:lightseagreen ;
-    color: #fff;
+
+label{
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+
+}
+
+input{
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border:1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+button{
+    padding: 10px 0;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-
+    margin: 10px;
+    background-color: lightseagreen;
+    width: 45%;
+    
+    
 }
+p{
+    margin-top: 20px;
+    font-size: 14px;
+    color:#333
+}
+a{
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: small;
+   
+    
+    color: #333;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+
 
 button:hover{
     opacity: 0.8;
 }
 
-a{
-    text-decoration: none;
-    margin-top: 10px;
-    font-size: small;
-    text-align: center;
-    display: block;
-    color: #333;
 
-}
-a:hover{
-    text-decoration: underline;
+.logo{
+    width: 150x;
+   
+    padding-right: 2px; 
+     
 }
