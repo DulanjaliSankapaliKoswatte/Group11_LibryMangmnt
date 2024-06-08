@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: bookDetailsData
         })
-        .then(response => response.json())
+        .then(response => {
+            response.text().then(text => console.log(text));
+            return response.json();
+        })
         .then(data => {
             if (!data.success) {
                 throw new Error(data.message); // If saving details fails, throw an error
@@ -42,7 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData // Send the form data for file upload to S3
             });
         })
-        .then(response => response.json())
+        .then(response => {
+            response.text().then(text => console.log(text));
+            return response.json();
+        })
         .then(data => {
             if (!data.success) {
                 throw new Error(data.message); // If file upload fails, throw an error
