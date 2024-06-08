@@ -2,6 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: POST, GET, DELETE");
 
 // Enable error reporting for debugging
 // ini_set('display_errors', 1);
