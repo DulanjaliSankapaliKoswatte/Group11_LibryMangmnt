@@ -2,24 +2,26 @@
 <html>
 <head>
     <title>Forgot Password</title>
+    <script src="refreshtoken.js"></script>
+    <script src="forgot.js"></script>
     <link rel="stylesheet" href="forgot.css">
 </head>
 <body>
     <div class="forgot-container">
         <div class="left">
-        <form id="forgot-form">
-            <h1>Forgot Password</h1>
-            <p>Please enter your email below and you will receive instructions to reset your Password</p>
-            <input type="email" id="email" placeholder="Enter Email" required>
-            <button type="submit">Reset Password</button>
-            <p></p><a href="login.html">Back to Login</a></p>
-        </form>
+            <form id="forgot-form">
+                <h1>Forgot Password</h1>
+                <p>Please enter your email below and you will receive instructions to reset your Password</p>
+                <input type="email" id="email" placeholder="Enter Email" required>
+                <button type="submit">Reset Password</button>
+                <a href="login.html">Back to Login</a>
+            </form>
+        </div>
+
+        <div class="right">
+            <img src="login2.jpg" width="200" class="logo">
+        </div>
     </div>
-    <div class="right">
-        <img src="login2.jpg" width="200" class="logo">
-    </div>
-    </div>
-    <script src="refreshtoken.js"></script>
-    <script src="forgot.js"></script>
+    
 </body>
 </html>
