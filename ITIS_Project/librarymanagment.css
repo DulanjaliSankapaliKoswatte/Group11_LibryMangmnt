@@ -45,8 +45,9 @@ body {
     align-items: center;
     justify-content: center;
     height: 80%;
+    
 }
- 
+
 h1 {
     font-size: 28px;
     margin-bottom: 20px;
@@ -60,6 +61,7 @@ h1 {
     margin-bottom: 40px;
     margin: 0 auto;
     border-radius: 5px;
+    margin-top: 30px;
 }
  
 p {
@@ -155,3 +157,36 @@ tr:nth-child(even) {
     gap: 10px; 
     width: 95%;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: lightseagreen;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+ 
+ul li {
+    margin: 0 15px;
+}
+ 
+ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+ 
+ul li a:hover {
+    background-color: lightseagreen;
+    transform: scale(1.1);
+    border-radius: 5px;
+    text-decoration: none;
+}
+ 
+ 
