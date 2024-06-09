@@ -110,8 +110,12 @@ button{
     
     
 }
+h1{
+    font-size: 35px;
+}
 p{
     margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 14px;
     color:#333
 }
