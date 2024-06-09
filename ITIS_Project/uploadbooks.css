@@ -1,16 +1,19 @@
 body {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     align-items: center;
     background-color: lightgrey;
     font-family: Arial, Helvetica, sans-serif;
-    height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default margin */
+    height: 100vh; 
+    margin: 0; 
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .container {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
+    flex-direction: column; 
     align-items: center;
     justify-content: center;
     background-color: white;
@@ -18,8 +21,9 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 50px;
     max-width: 600px;
-    width: 90%; /* Responsive width, up to a maximum of 600px */
+    width: 90%; 
     margin: 20px;
+    overflow-y: auto;
 }
 
 .inner-container {
@@ -36,13 +40,13 @@ h1 {
     margin-bottom: 30px;
     text-align: center;
     color: #666;
-    font-size: 16px; /* Specified font size for consistency */
+    font-size: 16px; 
 }
 
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Increased gap for better spacing */
+    gap: 20px; 
 }
 
 label {
@@ -57,6 +61,7 @@ input[type="file"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    width: 100%; 
 }
 
 .button-container {
