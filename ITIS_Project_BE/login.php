@@ -11,6 +11,7 @@ $ttl = 60; // Time-To-Live for the token (1 hour)
 $refreshttl = 129600;
 $algorithm = "HS256"; // Specify the algorithm
 //6LcljfEpAAAAAFo1fJnU2CGqCLmQwwdzxPDzkxUY
+//Server : 6LdJjPMpAAAAAEsgeZ8w0PyB2hLf7OmyTXJ_yy6k
 $recaptchaSecret= "6LdJjPMpAAAAAEsgeZ8w0PyB2hLf7OmyTXJ_yy6k";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
