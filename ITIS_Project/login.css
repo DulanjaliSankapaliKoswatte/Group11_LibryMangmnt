@@ -140,3 +140,10 @@ button:hover{
     padding-right: 2px; 
      
 }
+.g-recaptcha {
+    width: 65%;    
+    margin-bottom: 20px;    
+    display: flex;    
+    justify-content: center;
+    margin-left: 65px;
+}
