@@ -1,4 +1,4 @@
-/* General page styles */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -53,7 +53,7 @@ th {
     cursor: pointer;
 }
 
-/* Button styles */
+
 .button {
     background-color: lightseagreen;
     color: white;
@@ -72,7 +72,7 @@ th {
     text-align: center;
 }
 
-/* Adjust dropdown menu styling */
+
 .dropdown-content {
     background-color: #f1f1f1;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -107,4 +107,8 @@ th {
 
 .dropbtn:hover {
     background-color: lightseagreen;
+}
+
+h1{
+    text-align: center;
 }
