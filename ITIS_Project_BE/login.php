@@ -7,7 +7,7 @@ require __DIR__ . '/../../vendor/autoload.php'; //  __DIR__ to ensure the correc
 use \Firebase\JWT\JWT;
 
 $key = "Group11"; 
-$ttl = 60; // Time-To-Live for the token (1 hour)
+$ttl = 3600; // Time-To-Live for the token (1 hour)
 $refreshttl = 129600;
 $algorithm = "HS256"; // Specify the algorithm
 //Local : 6LcljfEpAAAAAFo1fJnU2CGqCLmQwwdzxPDzkxUY

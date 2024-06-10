@@ -8,7 +8,7 @@ use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
 $key = "Group11"; // Secret key for JWT
-$ttl = 60; // Time-To-Live for the access token (1 hour)
+$ttl = 3600; // Time-To-Live for the access token (1 hour)
 $algorithm = "HS256"; // Algorithm used for token
 
 function getNewAccessTokenUsingExpiredToken($expiredToken, $key, $ttl, $algorithm) {
